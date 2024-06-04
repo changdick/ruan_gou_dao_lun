@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Game {
+    # BACKGROUND_IMAGE:BufferedImage
+    + Game()
+    + action(): void
+    # {abstract} difficultyInitial(): void
+    # {abstract} difficultyChangeAction(): void
+    # {abstract} scoreForBoss(): Boolean
+
+}
+class EasyGame{
+    + EasyGame()
+    # difficultyInitial(): void
+    # difficultyChangeAction(): void
+    # scoreForBoss(): Boolean
+}
+class NormalGame{
+    + NormalGame()
+    # difficultyInitial(): void
+    # difficultyChangeAction(): void
+    # scoreForBoss(): Boolean
+}
+class HardGame{
+    + HardGame()
+    # difficultyInitial(): void
+    # difficultyChangeAction(): void
+    # scoreForBoss(): Boolean
+}
+Game <|-- EasyGame
+Game <|-- NormalGame
+Game <|-- HardGame
+@enduml

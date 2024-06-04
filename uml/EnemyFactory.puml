@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+note as N1
+    工厂模式 创建敌机的工厂
+
+end note
+
+abstract class EnemyFactory {
+    # hp:int
+    # speedX:int
+    # speedY:int
+    + {abstract} getEnemyAircraft(): AbstractAircraft
+    + setHp(int hp): void
+    + increaseHp(int increase):void
+    + setSpeedY(int speedY):void
+    + increaseSpeedY(int increase):void
+}
+
+class MobEnemyFactory {
+    + MobEnemyFactory()
+    + getEnemyAircraft(): AbstractAircraft
+}
+class EliteEnemyFactory {
+    + EliteEnemyFactory()
+    + getEnemyAircraft(): AbstractAircraft
+}
+class BossEnemyFactory {
+    + BossEnemyFactory()
+    + getEnemyAircraft(): AbstractAircraft
+}
+class SuperEliteEnemyFactory {
+    - {static} random: Random
+    + SuperEnemyFactory()
+    + getEnemyAircraft(): AbstractAircraft
+}
+
+abstract class AbstractAircraft
+{
+
+ }
+class MobEnemy {
+
+}
+class EliteEnemy {
+
+}
+
+class BossEnemy {
+
+}
+class SuperEliteEnemy{
+
+}
+AbstractAircraft <|-- BossEnemy
+AbstractAircraft <|-- MobEnemy
+AbstractAircraft <|-- EliteEnemy
+AbstractAircraft <|-- SuperEliteEnemy
+
+EnemyFactory <|.- MobEnemyFactory
+EnemyFactory <|.- EliteEnemyFactory
+EnemyFactory <|.- BossEnemyFactory
+EnemyFactory <|.- SuperEliteEnemyFactory
+EliteEnemy <.- EliteEnemyFactory
+MobEnemy <.- MobEnemyFactory
+BossEnemy <.- BossEnemyFactory
+SuperEliteEnemy <.- SuperEliteEnemyFactory
+
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class HeroAircraft {
+
+  - {static}instance: HeroAircraft
+  + {static} getInstance(): HeroAircraft
+  - HeroAircraft(locationX: int, locationY: int, speedX: int, speedY: int, hp: int)
+  + forward(): void
+
+}
+
+note top
+    单例模式
+end note
+
+
+'note as 11
+'        if (instance == null) {
+'            // 双重检查锁定 保证线程安全
+'            synchronized (HeroAircraft.class) {
+'                if(instance == null) {
+'                    // 在这里创建唯一实例 ， 括号里应该填各项创建的参数
+'                    instance = new HeroAircraft(
+'                            Main.WINDOW_WIDTH / 2,
+'                            Main.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight() ,
+'                            0, 0 , 1000);
+'
+'                }
+'            }
+'        }
+'        return instance;
+'end note
+
+
+HeroAircraft o--> HeroAircraft
+'HeroAircraft::getInstance -> 11
+@enduml

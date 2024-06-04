@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class PlayerRecord {
+- score: int
+- userName: String
+- localDateTime: String
+
++ PlayerRecord()
++ getScore(): int
++ setScore(int score): void
++ getUserName(): String
++ setUserName(String userName): void
++ getLocalDateTime(): void
+
+}
+
+interface PlayerRecordDao {
++ {abstract} getAllRecords(): List<PlayerRecord>
++ {abstract} addRecord(PlayerRecord record): void
++ {abstract} saveRecords(): void
+}
+class PlayerRecordDaoImpl{
+- {static} FILENAME:String
+- records: List<PlayerRecord>
++ PlayerRecordDaoImpl()
++ getAllRecords(): List<PlayerRecord>
++ addRecord(PlayerRecord record): void
++ saveRecords(): void
+- rankRecords(): void
+}
+
+interface Serializable{}
+
+PlayerRecordDao<|.-PlayerRecordDaoImpl
+PlayerRecordDaoImpl --> PlayerRecord
+Serializable<|.-PlayerRecord
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class PropBomb {
+- observers: List<AbstractFlyingObject>
++ PropBomb(int locationX, int locationY, int speedX, int speedY)
+- registerObserver(AbstractFlyingObject observer):void
+- registerObserver():void
++ removeObserver(AbstractFlyingObject observer):void
+- notifyObservers():void
++ work(HeroAircraft heroAircraft):void
+}
+
+
+abstract class AbstractFlyingObject
+{
+    + updateBomb():void
+}
+abstract class AbstractAircraft{}
+AbstractFlyingObject <|-- AbstractAircraft
+class MobEnemy {
+}
+AbstractAircraft <|-- MobEnemy
+class EliteEnemy {
+}
+AbstractAircraft <|-- EliteEnemy
+class SuperEliteEnemy {
+    + updateBomb():void
+}
+AbstractAircraft <|-- SuperEliteEnemy
+class BossEnemy {
+    + updateBomb(): void
+}
+AbstractAircraft <|-- BossEnemy
+
+abstract class BaseBullet
+{
+}
+AbstractFlyingObject <|-- BaseBullet
+class EnemyBullet {
+}
+BaseBullet <|-- EnemyBullet
+
+PropBomb o--> AbstractFlyingObject
+
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class AbstractAircraft
+{
+    # shootStrategy: ShootStrategy
+    + shoot():List<BaseBullet>
+ }
+
+
+abstract class ShootStrategy {
+    +{abstract}doshoot(AbstractAircraft abstractAircraft, String bulletType):List<BaseBullet>
+
+}
+class NullShootStrategy {
+    + doshoot(AbstractAircraft abstractAircraft, String bulletType):List<BaseBullet>
+}
+ShootStrategy <|-- NullShootStrategy
+class DirectShootStrategy {
+    + doshoot(AbstractAircraft abstractAircraft, String bulletType):List<BaseBullet>
+}
+ShootStrategy <|-- DirectShootStrategy
+
+class ScatterShootStrategy {
+    + doshoot(AbstractAircraft abstractAircraft, String bulletType):List<BaseBullet>
+}
+ShootStrategy <|-- ScatterShootStrategy
+
+class RingShootStrategy {
+    + doshoot(AbstractAircraft abstractAircraft, String bulletType):List<BaseBullet>
+}
+ShootStrategy <|-- RingShootStrategy
+AbstractAircraft o--> ShootStrategy
+
+
+
+@enduml

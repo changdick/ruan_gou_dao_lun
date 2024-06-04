@@ -1,0 +1,66 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+note as N1
+    简单工厂模式 道具工厂 PropFactory
+end note
+
+Abstract class AbstractProp
+{
+    + AbstractProp(int locationX, int locationY, int speedX, int speedY)
+    + {abstract} work(HeroAircraft heroAircraft):void
+}
+class PropBlood {
+    + PropBlood(int locationX, int locationY, int speedX, int speedY)
+    + work(HeroAircraft heroAircraft):void
+}
+class PropBomb {
+    + PropBomb(int locationX, int locationY, int speedX, int speedY)
+    + work(HeroAircraft heroAircraft):void
+}
+class PropBullet {
+    + PropBullet(int locationX, int locationY, int speedX, int speedY)
+    + work(HeroAircraft heroAircraft):void
+}
+
+
+class PropBulletPlus {
+    + PropBulletPlus(int locationX, int locationY,int speedX, int speedY)
+    + work(HeroAircraft heroAircraft):void
+}
+class PropFactory {
+    + {static} getProp(String propType , int locationX , int locationY): AbstractProp
+
+}
+note left of PropFactory::getProp
+            if (propType == null) {
+                return null;
+            }
+
+            //根据传入的参数字符串 propType 来判断返回哪一种道具
+
+            if (propType.equalsIgnoreCase("PropBlood")) {
+            // 等一下写参数
+                return new PropBlood(locationX , locationY , 0 ,10);
+            } else if (propType.equalsIgnoreCase("PropBomb")) {
+                return new PropBomb(locationX , locationY , 0 ,10);
+            } else if (propType.equalsIgnoreCase("PropBullet")) {
+                return new PropBullet(locationX , locationY , 0 ,10);
+            } else if (propType.equalsIgnoreCase("PropBulletPlus")) {
+                return new PropBulletPlus(locationX , locationY , 0 ,10);
+            }
+
+            return null;
+
+end note
+
+
+AbstractProp <|-- PropBlood
+AbstractProp <|-- PropBomb
+AbstractProp <|-- PropBullet
+AbstractProp <|-- PropBulletPlus
+PropBlood <.- PropFactory
+PropBomb <.- PropFactory
+PropBullet <.- PropFactory
+PropBulletPlus <.- PropFactory
+@enduml
